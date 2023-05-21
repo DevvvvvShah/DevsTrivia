@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Dev\'s Trivia</string>
+    <string name="heading">Trivia Time!</string>
+    <string name="radiobutton1">RadioButton</string>
+    <string name="radiobutton2">RadioButton</string>
+    <string name="radiobutton3">RadioButton</string>
+    <string name="radiobutton4">RadioButton</string>
+    <string name="question">TextView</string>
+    <string name="submit">submit</string>
+</resources>
