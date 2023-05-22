@@ -16,7 +16,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import kotlin.properties.Delegates
 
-var score by Delegates.notNull<Int>()
 
 class QuestionsActivity : AppCompatActivity() {
 
@@ -111,7 +110,7 @@ class QuestionsActivity : AppCompatActivity() {
         scoreBut.text = score.toString()
         val button = findViewById<Button>(R.id.nextButton)
         button.visibility = Button.VISIBLE
-        if (currentPosition == finalPosition+1){ button.text = getString(R.string.go_back) }
+        if (currentPosition == finalPosition+1){ button.text = getString(R.string.goto_results) }
         state = 2
     }
 
@@ -127,11 +126,14 @@ class QuestionsActivity : AppCompatActivity() {
         answerButton4.setBackgroundResource(R.drawable.pngitem_584233)
         val button = findViewById<Button>(view.id)
         if (currentPosition == finalPosition+1){
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this@QuestionsActivity, ResultActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
-            finish()}
+            finish()
+            return}
         else{showQuestion()
         button.visibility = Button.GONE}
+        Log.i("zxcv","${currentPosition -finalPosition-1}")
     }
 }
