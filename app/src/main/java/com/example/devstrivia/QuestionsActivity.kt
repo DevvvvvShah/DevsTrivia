@@ -102,8 +102,8 @@ class QuestionsActivity : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             finish()}
-        showQuestion()
+        else{showQuestion()
         currentPosition+=1
-        button.visibility = Button.GONE
+        button.visibility = Button.GONE}
     }
 }
