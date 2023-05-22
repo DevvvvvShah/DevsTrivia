@@ -2,40 +2,56 @@ package com.example.devstrivia
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.devstrivia.databinding.ActivityQuestionsBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class QuestionsActivity : AppCompatActivity() {
 
-    var finalPosition = 4
+    private var finalPosition = 4
     var currentPosition = 1
     var correctAns = (1 .. 4).random()
-    var state = 0
-    private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityQuestionsBinding
-
+    private var state = 0
+    val questionList = ArrayList<Question>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_questions)
-        showQuestion()
-        currentPosition+=1
+        fetchQuestion()
     }
 
+    private fun fetchQuestion(){
+        val retrofitBuilder = Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(BASE_URL)
+            .build()
+            .create(ApiInterface::class.java)
+        val retrofitData = retrofitBuilder.getData()
+        retrofitData.enqueue(object : Callback<Res?> {
+            override fun onResponse(call: Call<Res?>, response: Response<Res?>) {
+                val responseBody = response.body()!!
+                val dataBody = responseBody.results
+                Log.i("Question_data", "${responseBody.results}")
+                for (data in dataBody) questionList.add(data)
+                showQuestion()
+            }
+            override fun onFailure(call: Call<Res?>, t: Throwable) {
+                Log.d("Question_data","failed")
+            }
+        })
+    }
     private fun showQuestion(){
 
-        val questionList = Question_data.getQuestions()
+        finalPosition = questionList.count()
         val question: Question = questionList[currentPosition-1]
         val questionView = findViewById<TextView>(R.id.questionView)
         val answerButtons = findViewById<RadioGroup>(R.id.radioGroup)
@@ -44,10 +60,12 @@ class QuestionsActivity : AppCompatActivity() {
         val answerButton3 = findViewById<RadioButton>(R.id.radioButton3)
         val answerButton4 = findViewById<RadioButton>(R.id.radioButton4)
         answerButtons.clearCheck()
+        val incorrectAns = question.incorrect_answers.toTypedArray()
+        incorrectAns.shuffle()
         answerButton1.text = question.correct_answer
-        answerButton2.text = question.incorrect_answers[0]
-        answerButton3.text = question.incorrect_answers[1]
-        answerButton4.text = question.incorrect_answers[2]
+        answerButton2.text = incorrectAns[0]
+        answerButton3.text = incorrectAns[1]
+        answerButton4.text = incorrectAns[2]
         correctAns = (1 .. 4).random()
         when(correctAns){
             1 -> {correctAns = R.id.radioButton1}
@@ -62,6 +80,7 @@ class QuestionsActivity : AppCompatActivity() {
                 correctAns = R.id.radioButton4}
         }
         questionView.text = question.question
+        currentPosition+=1
         state = 1
     }
 
@@ -69,7 +88,6 @@ class QuestionsActivity : AppCompatActivity() {
         if (state != 1){
             return
         }
-        //Log.i("asdf","${view.id}")
         //val radioOptionsGroup = findViewById<RadioGroup>(R.id.radioGroup)
         val selectedId: Int = view.id
         val correct = findViewById<RadioButton>(correctAns)
@@ -82,8 +100,6 @@ class QuestionsActivity : AppCompatActivity() {
         button.visibility = Button.VISIBLE
         if (currentPosition == finalPosition+1){ button.text = getString(R.string.go_back) }
         state = 2
-
-
     }
 
     fun nextQuestion(view: View) {
@@ -103,7 +119,6 @@ class QuestionsActivity : AppCompatActivity() {
             startActivity(intent)
             finish()}
         else{showQuestion()
-        currentPosition+=1
         button.visibility = Button.GONE}
     }
 }
