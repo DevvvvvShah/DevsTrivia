@@ -8,6 +8,19 @@
     android:background="@drawable/background"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/titleFrame"
+        android:layout_width="279dp"
+        android:layout_height="78dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="68dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/title_frame"
+        android:importantForAccessibility="no" />
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
@@ -21,122 +34,71 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/questionView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="87dp"
-
-        android:padding="20dp"
-        android:text="@string/question"
-        android:textColor="#91E6FE"
-        android:textSize="26sp"
+    <androidx.cardview.widget.CardView
+        android:layout_width="394sp"
+        android:layout_height="320sp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        app:cardBackgroundColor="#241042"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/titleFrame"
+        app:layout_constraintVertical_bias="0.4" >
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questionView">
-
-        <RadioButton
-            android:id="@+id/radioButton1"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:background="@drawable/pngitem_584233"
-            android:button="@android:color/transparent"
-            android:paddingStart="31dp"
-            android:paddingEnd="31dp"
-            android:text="@string/radiobutton1"
-            android:textAlignment="center"
-            android:textColor="#B18896"
-            android:textSize="20sp"
-            android:onClick="checkAns"
-            tools:layout_editor_absoluteX="134dp"
-            tools:layout_editor_absoluteY="369dp" />
+            android:layout_height="match_parent"
+            >
 
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:background="@drawable/pngitem_584233"
-            android:button="@android:color/transparent"
-            android:paddingStart="31dp"
-            android:paddingEnd="31dp"
-            android:text="@string/radiobutton2"
-            android:textAlignment="center"
-            android:textColor="#B18896"
-            android:textSize="20sp"
-            android:onClick="checkAns"
-            tools:layout_editor_absoluteX="134dp"
-            tools:layout_editor_absoluteY="369dp" />
+            <Button
+                android:id="@+id/nextScreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="48dp"
+                android:onClick="nextPage"
+                android:text="@string/proceed_to_trivia"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:background="@drawable/pngitem_584233"
-            android:button="@android:color/transparent"
-            android:paddingStart="31dp"
-            android:paddingEnd="31dp"
-            android:text="@string/radiobutton3"
-            android:textAlignment="center"
-            android:textColor="#B18896"
-            android:textSize="20sp"
-            android:onClick="checkAns"
-            tools:layout_editor_absoluteX="134dp"
-            tools:layout_editor_absoluteY="369dp" />
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="246sp"
+                android:layout_height="54sp"
+                android:autofillHints="name"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:hint="@string/enter_your_name"
+                android:inputType="text"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@+id/nextScreen"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.503"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.706" />
 
-        <RadioButton
-            android:id="@+id/radioButton4"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:background="@drawable/pngitem_584233"
-            android:button="@android:color/transparent"
-            android:paddingStart="31dp"
-            android:paddingEnd="31dp"
-            android:text="@string/radiobutton4"
-            android:textAlignment="center"
-            android:textColor="#B18896"
-            android:textSize="20sp"
-            android:onClick="checkAns"
-            tools:layout_editor_absoluteX="134dp"
-            tools:layout_editor_absoluteY="369dp" />
-
-    </RadioGroup>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/nextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="64dp"
-        android:text="@string/next"
-        android:textSize="16sp"
-        android:visibility="gone"
-        android:onClick="nextQuestion"
-        app:iconGravity="end"
-        app:iconSize="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
-
-    <ImageView
-        android:id="@+id/titleFrame"
-        android:layout_width="279dp"
-        android:layout_height="78dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="68dp"
-        app:layout_constraintBottom_toTopOf="@+id/questionView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/title_frame" />
+            <TextView
+                android:id="@+id/welcomeMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/welcome"
+                android:textAlignment="center"
+                android:textColor="#C259D5"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.311" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
