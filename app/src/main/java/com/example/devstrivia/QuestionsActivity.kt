@@ -14,6 +14,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.properties.Delegates
+
+var score by Delegates.notNull<Int>()
 
 class QuestionsActivity : AppCompatActivity() {
 
@@ -26,6 +29,11 @@ class QuestionsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_questions)
+        val button = findViewById<Button>(R.id.nextButton)
+        button.visibility = Button.GONE
+        val scoreBut = findViewById<Button>(R.id.scoreId)
+        //scoreBut.visibility = Button.GONE
+        score = 0
         fetchQuestion()
     }
 
@@ -68,7 +76,7 @@ class QuestionsActivity : AppCompatActivity() {
         answerButton4.text = incorrectAns[2]
         correctAns = (1 .. 4).random()
         when(correctAns){
-            1 -> {correctAns = R.id.radioButton1}
+            1 -> {correctAns = R.id.radioButton1 }
             2 -> {answerButton2.text = question.correct_answer
                 answerButton1.text = question.incorrect_answers[0]
                 correctAns = R.id.radioButton2}
@@ -79,7 +87,8 @@ class QuestionsActivity : AppCompatActivity() {
                 answerButton1.text = question.incorrect_answers[2]
                 correctAns = R.id.radioButton4}
         }
-        questionView.text = question.question
+        val questionText = getString(R.string.questionText,currentPosition,question.question)
+        questionView.text = questionText
         currentPosition+=1
         state = 1
     }
@@ -96,6 +105,10 @@ class QuestionsActivity : AppCompatActivity() {
         if (selectedId != correctAns){
             selected.setBackgroundResource(R.drawable.pngitem_wrong)
         }
+        else{ score+=1 }
+        val scoreBut = findViewById<Button>(R.id.scoreId)
+        scoreBut.visibility = Button.VISIBLE
+        scoreBut.text = score.toString()
         val button = findViewById<Button>(R.id.nextButton)
         button.visibility = Button.VISIBLE
         if (currentPosition == finalPosition+1){ button.text = getString(R.string.go_back) }

@@ -10,7 +10,7 @@
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="previous">Previous</string>
-
+    <string name="questionText">%1$d. %2$s</string>
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
@@ -50,4 +50,5 @@
     <string name="proceed_to_trivia">proceed to trivia</string>
     <string name="enter_your_name">Enter your name</string>
     <string name="welcome">Welcome to Dev\'s Trivia!\n Write your name to proceed</string>
+    <string name="title_activity_result_view">ResultView</string>
 </resources>
