@@ -51,4 +51,11 @@
     <string name="enter_your_name">Enter your name</string>
     <string name="welcome">Welcome to Dev\'s Trivia!\n Write your name to proceed</string>
     <string name="title_activity_result_view">ResultView</string>
+    <string name="zero">0</string>
+    <string name="your_score">Your Score:\n0</string>
+    <string name="your_score_edit">Your Score:\n%1$d</string>
+    <string name="back_to_start_screen">Back to start screen</string>
+    <string name="goto_results">Results</string>
+    <string name="previous_score">Previous Score: 0</string>
+    <string name="previous_score_edit">Previous Score: %1$d</string>
 </resources>
