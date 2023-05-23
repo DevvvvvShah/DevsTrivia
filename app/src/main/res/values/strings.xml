@@ -47,9 +47,9 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
-    <string name="proceed_to_trivia">proceed to trivia</string>
+    <string name="proceed_to_trivia">proceed</string>
     <string name="enter_your_name">Enter your name</string>
-    <string name="welcome">Welcome to Dev\'s Trivia!\n Write your name to proceed</string>
+    <string name="welcome">Welcome to Dev\'s Trivia!</string>
     <string name="title_activity_result_view">ResultView</string>
     <string name="zero">0</string>
     <string name="your_score">Your Score:\n0</string>
@@ -58,4 +58,15 @@
     <string name="goto_results">Results</string>
     <string name="previous_score">Previous Score: 0</string>
     <string name="previous_score_edit">Previous Score: %1$d</string>
+    <string-array name="category">
+        <item>General Knowledge</item>
+        <item>Video Games</item>
+        <item>Geography</item>
+        <item>Technology</item>
+    </string-array>
+    <string-array name="Difficulty">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
 </resources>

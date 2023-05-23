@@ -43,7 +43,7 @@ class QuestionsActivity : BaseActivity() {
             .baseUrl(BASE_URL)
             .build()
             .create(ApiInterface::class.java)
-        val retrofitData = retrofitBuilder.getData()
+        val retrofitData = retrofitBuilder.getData(selectedCategory, 10, selectedDifficulty, "multiple")
         retrofitData.enqueue(object : Callback<Res?> {
             override fun onResponse(call: Call<Res?>, response: Response<Res?>) {
                 val responseBody = response.body()!!
@@ -53,12 +53,11 @@ class QuestionsActivity : BaseActivity() {
                 showQuestion()
             }
             override fun onFailure(call: Call<Res?>, t: Throwable) {
-                Log.d("Question_data","failed")
+                Log.d("Question_data","${t.message}")
             }
         })
     }
     private fun showQuestion(){
-
         finalPosition = questionList.count()
         val question: Question = questionList[currentPosition-1]
         val questionView = findViewById<TextView>(R.id.questionView)
