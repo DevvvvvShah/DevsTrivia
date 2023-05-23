@@ -1,6 +1,8 @@
 package com.example.devstrivia
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -14,10 +16,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import kotlin.properties.Delegates
 
 
-class QuestionsActivity : AppCompatActivity() {
+class QuestionsActivity : BaseActivity() {
 
     private var finalPosition = 4
     var currentPosition = 1
@@ -126,6 +127,7 @@ class QuestionsActivity : AppCompatActivity() {
         answerButton4.setBackgroundResource(R.drawable.pngitem_584233)
         val button = findViewById<Button>(view.id)
         if (currentPosition == finalPosition+1){
+            hasPlayed = 1
             val intent = Intent(this@QuestionsActivity, ResultActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)

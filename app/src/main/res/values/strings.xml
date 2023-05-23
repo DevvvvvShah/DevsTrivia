@@ -56,4 +56,6 @@
     <string name="your_score_edit">Your Score:\n%1$d</string>
     <string name="back_to_start_screen">Back to start screen</string>
     <string name="goto_results">Results</string>
+    <string name="previous_score">Previous Score: 0</string>
+    <string name="previous_score_edit">Previous Score: %1$d</string>
 </resources>
