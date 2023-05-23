@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Dev\'s Trivia</string>
+    <string name="app_name">Trivia Time</string>
     <string name="heading">Trivia Time!</string>
     <string name="radiobutton">…</string>
     <string name="question">Loading question</string>
@@ -9,7 +9,7 @@
     <string name="questionText">%1$d. %2$s</string>
     <string name="proceed_to_trivia">proceed</string>
     <string name="enter_your_name">Enter your name</string>
-    <string name="welcome">Welcome to Dev\'s Trivia!</string>
+    <string name="welcome">Welcome to Trivia Time!</string>
     <string name="title_activity_result_view">ResultView</string>
     <string name="zero">0</string>
     <string name="your_score">Your Score:\n0</string>
