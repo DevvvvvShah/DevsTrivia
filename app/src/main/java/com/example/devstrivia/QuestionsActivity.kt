@@ -31,8 +31,6 @@ class QuestionsActivity : BaseActivity() {
         setContentView(R.layout.activity_questions)
         val button = findViewById<Button>(R.id.nextButton)
         button.visibility = Button.GONE
-        val scoreBut = findViewById<Button>(R.id.scoreId)
-        //scoreBut.visibility = Button.GONE
         score = 0
         fetchQuestion()
     }
