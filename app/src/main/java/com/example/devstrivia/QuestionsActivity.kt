@@ -69,7 +69,6 @@ class QuestionsActivity : BaseActivity() {
         val answerButton4 = findViewById<RadioButton>(R.id.radioButton4)
         answerButtons.clearCheck()
         val incorrectAns = question.incorrect_answers.toTypedArray()
-        incorrectAns.shuffle()
         answerButton1.text = question.correct_answer
         answerButton2.text = incorrectAns[0]
         answerButton3.text = incorrectAns[1]
