@@ -27,7 +27,7 @@ class MainActivity : BaseActivity() {
         val difSpinner = findViewById<Spinner>(R.id.difficultySpinner)
         val category = arrayListOf<String>("General Knowledge", "Video Games", "Geography", "Technology")
         val difficulty = arrayListOf<String>("Easy", "Medium", "Hard")
-        val arrayAdapter1 = ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,android.R.id.text1,category)
+        val arrayAdapter1 = ArrayAdapter<String>(this,R.layout.spinner_item,category)
         catSpinner.adapter = arrayAdapter1
         catSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(
@@ -48,7 +48,7 @@ class MainActivity : BaseActivity() {
                 selectedCategory = 0
             }
         }
-        val arrayAdapter2 = ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,android.R.id.text1,difficulty)
+        val arrayAdapter2 = ArrayAdapter<String>(this,R.layout.spinner_item,difficulty)
         difSpinner.adapter = arrayAdapter2
         difSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(
