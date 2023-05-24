@@ -11,6 +11,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.HtmlCompat
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -65,25 +66,32 @@ class QuestionsActivity : BaseActivity() {
         val answerButton3 = findViewById<RadioButton>(R.id.radioButton3)
         val answerButton4 = findViewById<RadioButton>(R.id.radioButton4)
         answerButtons.clearCheck()
-        val incorrectAns = question.incorrect_answers.toTypedArray()
-        answerButton1.text = question.correct_answer
+        val incorrect = question.incorrect_answers.toTypedArray()
+        val incorrectAns = mutableListOf<String>()
+        for (ans in incorrect){
+            val temp = HtmlCompat.fromHtml(ans, HtmlCompat.FROM_HTML_MODE_LEGACY).toString()
+            incorrectAns.add(temp)
+        }
+        val correctAnswer = HtmlCompat.fromHtml(question.correct_answer, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        answerButton1.text = correctAnswer
         answerButton2.text = incorrectAns[0]
         answerButton3.text = incorrectAns[1]
         answerButton4.text = incorrectAns[2]
         correctAns = (1 .. 4).random()
         when(correctAns){
             1 -> {correctAns = R.id.radioButton1 }
-            2 -> {answerButton2.text = question.correct_answer
+            2 -> {answerButton2.text = correctAnswer
                 answerButton1.text = question.incorrect_answers[0]
                 correctAns = R.id.radioButton2}
-            3 -> {answerButton3.text = question.correct_answer
+            3 -> {answerButton3.text = correctAnswer
                 answerButton1.text = question.incorrect_answers[1]
                 correctAns = R.id.radioButton3}
-            else -> {answerButton4.text = question.correct_answer
+            else -> {answerButton4.text = correctAnswer
                 answerButton1.text = question.incorrect_answers[2]
                 correctAns = R.id.radioButton4}
         }
-        val questionText = getString(R.string.questionText,currentPosition,question.question)
+        val questionString = getString(R.string.questionText,currentPosition,question.question)
+        val questionText = HtmlCompat.fromHtml(questionString, HtmlCompat.FROM_HTML_MODE_LEGACY)
         questionView.text = questionText
         currentPosition+=1
         state = 1
